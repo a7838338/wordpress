@@ -1,51 +1,51 @@
-<?php
-/**
- * The template for displaying the footer
- *
- * Contains the closing of the #content div and all content after.
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package WordPress
- * @subpackage Twenty_Seventeen
- * @since 1.0
- * @version 1.2
- */
+<!-- Footer Widget Secton -->
+<?php $wallstreet_pro_options=theme_data_setup();
+	  $current_options = wp_parse_args(  get_option( 'wallstreet_pro_options', array() ), $wallstreet_pro_options ); ?>
+<div class="footer_section">
 
-?>
-
-		</div><!-- #content -->
-
-		<footer id="colophon" class="site-footer" role="contentinfo">
-			<div class="wrap">
-				<?php
-				get_template_part( 'template-parts/footer/footer', 'widgets' );
-
-				if ( has_nav_menu( 'social' ) ) :
-					?>
-					<nav class="social-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Footer Social Links Menu', 'twentyseventeen' ); ?>">
-						<?php
-							wp_nav_menu(
-								array(
-									'theme_location' => 'social',
-									'menu_class'     => 'social-links-menu',
-									'depth'          => 1,
-									'link_before'    => '<span class="screen-reader-text">',
-									'link_after'     => '</span>' . twentyseventeen_get_svg( array( 'icon' => 'chain' ) ),
-								)
-							);
-						?>
-					</nav><!-- .social-navigation -->
-					<?php
-				endif;
-
-				get_template_part( 'template-parts/footer/site', 'info' );
-				?>
-			</div><!-- .wrap -->
-		</footer><!-- #colophon -->
-	</div><!-- .site-content-contain -->
-</div><!-- #page -->
+	<?php if($current_options['footer_social_media_enabled']==true) { ?>
+				<div class="footer-social-area"><ul class="footer-social-icons">
+					<?php if($current_options['social_media_twitter_link']!='') { ?>
+					<li><a href="<?php echo esc_url( $current_options['social_media_twitter_link']); ?>"><i class="fa fa-twitter"></i></a></li>
+					<?php }
+					if($current_options['social_media_facebook_link']!='') { ?>
+					<li><a href="<?php echo esc_url( $current_options['social_media_facebook_link']); ?>"><i class="fa fa-facebook"></i></a></li>
+					<?php }					
+					if($current_options['social_media_googleplus_link']!='') { ?>
+					<li><a href="<?php echo esc_url( $current_options['social_media_googleplus_link']); ?>"><i class="fa fa-google-plus"></i></a></li>
+					<?php }
+					if($current_options['social_media_linkedin_link']!='') { ?>
+					<li><a href="<?php echo esc_url( $current_options['social_media_linkedin_link']); ?>"><i class="fa fa-linkedin"></i></a></li>
+					<?php }
+					if($current_options['social_media_youtube_link']!='') { ?>
+					<li><a href="<?php echo esc_url( $current_options['social_media_youtube_link']); ?>"><i class="fa fa-youtube"></i></a></li>					
+					<?php } if($current_options['social_media_instagram_link']!='') { ?>
+					<li><a href="<?php echo esc_url( $current_options['social_media_instagram_link'] ); ?>"><i class="fa fa-instagram"></i></a></li>					
+					<?php } ?>
+				</div></ul>
+				<?php } ?>
+	
+	<div class="container">
+		<div class="row footer-widget-section">
+		<?php 
+			if ( is_active_sidebar( 'footer-widget-area' ) )
+			{ dynamic_sidebar( 'footer-widget-area' );	}
+		?>
+		</div>
+        <div class="row">
+			<div class="col-md-12">
+				<div class="footer-copyright">
+					<p><?php echo $current_options['footer_copyright'];?> 
+				</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div> <!-- end of wrapper -->
+<!-- Page scroll top -->
+<a href="#" class="page_scrollup"><i class="fa fa-chevron-up"></i></a>
+<!-- Page scroll top -->
 <?php wp_footer(); ?>
-
 </body>
 </html>
